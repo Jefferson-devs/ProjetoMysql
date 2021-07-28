@@ -1,0 +1,30 @@
+CRIAR  TABELA ` tb_postagem` (
+	` Id_postagem `  bigint  NOT NULL AUTO_INCREMENT,
+	` Titulo `  varchar  NOT NULL ,
+	` Conteudo `  varchar  NOT NULL ,
+	` Dados ` DATETIME NOT NULL ,
+	` Midia `  BOOLEAN  NOT NULL ,
+	` Usuario_id `  bigint  NOT NULL ,
+	` Tema_id `  bigint  NOT NULL ,
+	PRIMÁRIA CHAVE ( ` id_postagem ` )
+);
+
+CRIAR  TABELA ` tb_informacoes_familia` (
+	` Id_tema `  bigint  NOT NULL AUTO_INCREMENT,
+	` Renda_da_familia ` double NOT NULL ,
+	` Quantidade_de_membros `  int  NOT NULL ,
+	` Cadastro_em_programas_sociais `  BOOLEAN  NOT NULL ,
+	PRIMÁRIA CHAVE ( ` id_tema ` )
+);
+
+CRIAR  TABELA ` tb_usuario` (
+	` Id_usuario `  bigint  NOT NULL AUTO_INCREMENT,
+	` Nome_completo `  varchar  NOT NULL ,
+	` Email `  varchar  NOT NULL ,
+	` Senha `  varchar  NOT NULL ,
+	PRIMÁRIA CHAVE ( ` id_usuario ` )
+);
+
+ALTER  TABLE  ` tb_postagem ` ADD RESTRIÇÃO  ` tb_postagem_fk0 `  EXTERNA CHAVE ( ` usuario_id ` ) Referências  ` tb_usuario ` ( ` id_usuario ` );
+
+ALTER  TABLE  ` tb_postagem ` ADD RESTRIÇÃO  ` tb_postagem_fk1 `  EXTERNA CHAVE ( ` tema_id ` ) Referências  ` tb_informacoes_familia ` ( ` id_tema ` );
